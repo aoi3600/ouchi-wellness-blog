@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おうちウェルネス</title>
+  <meta name="description" content="おうちヨガ・ウェルネスで毎日を整える。40〜50代女性のためのリアルな体験ブログ。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --mauve:      #4B3B47;
+      --dim-grey:   #6A6262;
+      --grey-olive: #9C9990;
+      --sand:       #CFD2B2;
+      --blush:      #E0D8DE;
+      --blush-light:#f5f1f3;
+      --white:      #fff;
+      --border:     #e8e2e5;
+      --radius:     6px;
+      --shadow:     0 2px 14px rgba(75,59,71,0.08);
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--mauve);
+      line-height: 1.85;
+      background: var(--white);
+      font-size: 15px;
+      font-weight: 300;
+    }
+    a { color: var(--mauve); text-decoration: none; }
+    a:hover { color: var(--dim-grey); }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex; align-items: center;
+      justify-content: space-between; height: 60px;
+    }
+    .site-logo { height: 38px; width: auto; }
+    .site-logo-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.2rem; font-weight: 700;
+      letter-spacing: 0.06em; color: var(--mauve);
+    }
+    .site-logo-text span { color: var(--grey-olive); }
+    .header-nav ul { list-style: none; display: flex; }
+    .header-nav li a {
+      display: block; padding: 0 1rem;
+      font-size: 0.82rem; color: var(--dim-grey);
+      letter-spacing: 0.04em; line-height: 60px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .header-nav li a:hover { color: var(--mauve); border-bottom-color: var(--mauve); }
+    .header-search { background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--grey-olive); }
+
+    /* ===== フルwidth スライダー ===== */
+    .slider-section {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      background: var(--blush-light);
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.45s ease;
+    }
+    .slide {
+      min-width: calc(100% / 3);
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .slide-img {
+      width: 100%; height: 240px;
+      object-fit: cover; display: block;
+      transition: transform 0.3s;
+    }
+    .slide:hover .slide-img { transform: scale(1.03); }
+    .slide-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(75,59,71,0.72));
+      padding: 1.5rem 1rem 0.9rem;
+    }
+    .slide-cat {
+      display: inline-block;
+      background: var(--white); color: var(--mauve);
+      font-size: 0.68rem; font-weight: 700;
+      padding: 0.1rem 0.55rem; margin-bottom: 0.4rem;
+    }
+    .slide-title {
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--white); line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .slider-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 0.65rem 0;
+      background: var(--white); border-bottom: 1px solid var(--border);
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--blush); border: none; cursor: pointer;
+      transition: background 0.2s; padding: 0;
+    }
+    .dot.active { background: var(--mauve); }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.88); border: none;
+      width: 32px; height: 32px; border-radius: 50%;
+      cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10; color: var(--mauve); box-shadow: var(--shadow);
+    }
+    .slider-btn:hover { background: var(--white); }
+    .slider-btn.prev { left: 0.7rem; }
+    .slider-btn.next { right: 0.7rem; }
+
+    /* ===== メインレイアウト（スライダーの下） ===== */
+    .site-body {
+      max-width: 1100px; margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem; align-items: start;
+    }
+    .main-content { min-width: 0; }
+    .sidebar { min-width: 0; }
+
+    /* ===== サイドバー ===== */
+    .sidebar-widget { margin-bottom: 2.5rem; }
+    .widget-title {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.14em; color: var(--mauve);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--mauve); margin-bottom: 1.2rem;
+    }
+    .profile-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      overflow: hidden; margin: 0 auto 0.8rem;
+      border: 2px solid var(--blush);
+    }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { text-align: center; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .profile-sub { text-align: center; font-size: 0.75rem; color: var(--grey-olive); margin-bottom: 0.8rem; }
+    .profile-text { font-size: 0.82rem; color: var(--dim-grey); line-height: 1.8; }
+    .cat-list { list-style: none; }
+    .cat-list li { border-bottom: 1px solid var(--border); }
+    .cat-list li:last-child { border-bottom: none; }
+    .cat-list li a {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 0; font-size: 0.83rem; color: var(--dim-grey);
+    }
+    .cat-list li a:hover { color: var(--mauve); }
+    .cat-count { font-size: 0.72rem; color: var(--grey-olive); }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag-link {
+      font-size: 0.73rem; padding: 0.18rem 0.65rem;
+      border: 1px solid var(--blush); color: var(--dim-grey); transition: all 0.15s;
+    }
+    .tag-link:hover { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
+    .popular-list { list-style: none; }
+    .popular-item {
+      display: grid; grid-template-columns: 24px 64px 1fr;
+      gap: 0.6rem; align-items: center;
+      padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+    }
+    .popular-item:last-child { border-bottom: none; }
+    .popular-num { font-family: 'Noto Serif JP', serif; font-size: 1rem; font-weight: 700; color: var(--sand); }
+    .popular-thumb { width: 64px; height: 46px; object-fit: cover; border-radius: 3px; }
+    .popular-title { font-size: 0.78rem; line-height: 1.5; color: var(--dim-grey); }
+    .popular-title:hover { color: var(--mauve); }
+
+    /* ===== フッター ===== */
+    .site-footer {
+      background: var(--mauve); color: rgba(255,255,255,0.6);
+      text-align: center; padding: 3rem 1.5rem;
+      margin-top: 4rem; font-size: 0.82rem;
+    }
+    .footer-logo { font-family: 'Noto Serif JP', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .footer-desc { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin-bottom: 1rem; }
+    .footer-nav { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .footer-nav a { color: rgba(255,255,255,0.5); font-size: 0.78rem; }
+    .footer-nav a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.73rem; color: rgba(255,255,255,0.35); }
+
+    /* ===== スマホ ===== */
+    @media (max-width: 768px) {
+      .site-body { grid-template-columns: 1fr; gap: 2rem; padding: 0 1rem; margin: 1.5rem auto; }
+      .sidebar { order: 2; }
+      .header-nav { display: none; }
+      .slide { min-width: 80%; }
+      .slide-img { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" style="display:flex;align-items:center;">
+        <img src="/public/logo.png" alt="おうちウェルネス" class="site-logo"
+          onerror="this.style.display='none';document.getElementById('logo-text').style.display='block'">
+        <div id="logo-text" class="site-logo-text" style="display:none;">おうち<span>ウェルネス</span></div>
+      </a>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="/">ホーム</a></li>
+          <li><a href="/">ヨガ体験談</a></li>
+          <li><a href="/">ウェルネス習慣</a></li>
+          <li><a href="/">初心者ガイド</a></li>
+          <li><a href="/">プロフィール</a></li>
+        </ul>
+      </nav>
+      <button class="header-search">🔍</button>
+    </div>
+  </header>
+
+  <!-- フルwidth スライダー -->
+  <div class="slider-section">
+    <div style="position:relative;">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide" onclick="location.href='/posts/soelu-review/'">
+          <img class="slide-img" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&h=480&q=80" alt="">
+          <div class="slide-overlay"><span class="slide-cat">ヨガ体験談</span><div class="slide-title">【体が硬い・体調不安な私でも】SOELUオンラインヨガを試した正直な体験談</div></div>
+        </div>
+        <div class="slide">
+          <img class="slide-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&h=480&q=80" alt="">
+          <div class="slide-overlay"><span class="slide-cat">ウェルネス習慣</span><div class="slide-title">おうち時間を整える、40〜50代のウェルネス習慣</div></div>
+        </div>
+        <div class="slide">
+          <img class="slide-img" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=600&h=480&q=80" alt="">
+          <div class="slide-overlay"><span class="slide-cat">初心者ガイド</span><div class="slide-title">ヨガマット1枚から始める、おうちウェルネスのはじめかた</div></div>
+        </div>
+        <div class="slide">
+          <img class="slide-img" src="https://images.unsplash.com/photo-1510894347713-fc3dc6166ef5?auto=format&fit=crop&w=600&h=480&q=80" alt="">
+          <div class="slide-overlay"><span class="slide-cat">ヨガ体験談</span><div class="slide-title">朝5分でできる、体が硬い人のための目覚めストレッチ</div></div>
+        </div>
+        <div class="slide">
+          <img class="slide-img" src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=600&h=480&q=80" alt="">
+          <div class="slide-overlay"><span class="slide-cat">ウェルネス習慣</span><div class="slide-title">疲れを翌日に持ち越さない、夜のリラックスルーティン</div></div>
+        </div>
+      </div>
+      <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+      <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+    </div>
+    <div class="slider-nav">
+      <button class="dot active" onclick="goSlide(0)"></button>
+      <button class="dot" onclick="goSlide(1)"></button>
+      <button class="dot" onclick="goSlide(2)"></button>
+    </div>
+  </div>
+
+  <!-- スライダー下：2カラム -->
+  <div class="site-body">
+    <main class="main-content">
+      {{ content | safe }}
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <div class="widget-title">PROFILE</div>
+        <div class="profile-avatar">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=180&h=180&q=80" alt="ひかる">
+        </div>
+        <div class="profile-name">ひかる</div>
+        <div class="profile-sub">おうちウェルネス管理人</div>
+        <p class="profile-text">おうちヨガを通じて、毎日を少しずつ整えています。40〜50代の方へ、正直な体験談をお届けします。</p>
+      </div>
+      <div class="sidebar-widget">
+        <div class="widget-title">POPULAR</div>
+        <ul class="popular-list">
+          <li class="popular-item">
+            <span class="popular-num">1</span>
+            <img class="popular-thumb" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=128&h=92&q=80" alt="">
+            <a href="/posts/soelu-review/" class="popular-title">【体が硬い・体調不安な私でも】SOELUオンラインヨガを試した正直な体験談</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar-widget">
+        <div class="widget-title">CATEGORY</div>
+        <ul class="cat-list">
+          <li><a href="/"><span>ヨガ体験談</span><span class="cat-count">1</span></a></li>
+          <li><a href="/"><span>ウェルネス習慣</span><span class="cat-count">0</span></a></li>
+          <li><a href="/"><span>初心者ガイド</span><span class="cat-count">0</span></a></li>
+          <li><a href="/"><span>アイテム紹介</span><span class="cat-count">0</span></a></li>
+        </ul>
+      </div>
+      <div class="sidebar-widget">
+        <div class="widget-title">TAGS</div>
+        <div class="tag-cloud">
+          <a href="/" class="tag-link">SOELU</a>
+          <a href="/" class="tag-link">オンラインヨガ</a>
+          <a href="/" class="tag-link">初心者</a>
+          <a href="/" class="tag-link">体が硬い</a>
+          <a href="/" class="tag-link">40代</a>
+          <a href="/" class="tag-link">リラックス</a>
+          <a href="/" class="tag-link">おうち時間</a>
+          <a href="/" class="tag-link">ウェルネス</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo">おうちウェルネス</div>
+    <p class="footer-desc">体が硬くても、体調不安でも。おうちからはじめるウェルネスライフ</p>
+    <nav class="footer-nav">
+      <a href="/">ホーム</a><a href="/">プロフィール</a>
+      <a href="/">プライバシーポリシー</a><a href="/">お問い合わせ</a>
+    </nav>
+    <p class="footer-copy">© 2026 おうちウェルネス</p>
+  </footer>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    const track = document.getElementById('sliderTrack');
+    function goSlide(n) {
+      const vis = window.innerWidth <= 768 ? 1 : 3;
+      const max = total - vis;
+      current = Math.max(0, Math.min(n, max));
+      track.style.transform = `translateX(-${current * slides[0].offsetWidth}px)`;
+      document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === current));
+    }
+    function changeSlide(dir) { goSlide(current + dir); }
+    setInterval(() => {
+      const vis = window.innerWidth <= 768 ? 1 : 3;
+      goSlide(current >= total - vis ? 0 : current + 1);
+    }, 4000);
+    let sx = 0;
+    track.addEventListener('touchstart', e => sx = e.touches[0].clientX);
+    track.addEventListener('touchend', e => { const d = sx - e.changedTouches[0].clientX; if(Math.abs(d)>40) changeSlide(d>0?1:-1); });
+  </script>
+</body>
+</html>

@@ -234,7 +234,11 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <div class="site-logo">おうち<span>ウェルネス</span></div>
+      <a href="/" style="display:flex;align-items:center;">
+        <img src="/public/logo.png" alt="おうちウェルネス" style="height:38px;width:auto;"
+          onerror="this.style.display='none';document.getElementById('logo-text').style.display='block'">
+        <div id="logo-text" class="site-logo" style="display:none;">おうち<span>ウェルネス</span></div>
+      </a>
       <nav class="header-nav">
         <ul>
           <li><a href="/">ホーム</a></li>
