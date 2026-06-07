@@ -3,195 +3,120 @@ layout: base.njk
 ---
 
 <style>
-  /* パンくず */
   .breadcrumb {
-    font-size: 0.78rem;
-    color: var(--gray3);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    font-size: 0.76rem;
+    color: var(--grey-olive);
+    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
   }
-  .breadcrumb a { color: var(--gray3); }
-  .breadcrumb a:hover { color: var(--black); }
+  .breadcrumb a { color: var(--grey-olive); }
+  .breadcrumb a:hover { color: var(--mauve); }
 
-  /* アイキャッチ */
   .post-eyecatch {
-    width: 100%;
-    height: 360px;
+    width: 100%; height: 340px;
     object-fit: cover;
     border-radius: var(--radius);
     margin-bottom: 1.5rem;
-    display: block;
     box-shadow: var(--shadow);
+    display: block;
   }
 
-  /* 記事ヘッダー */
-  .post-header { margin-bottom: 2rem; }
+  .post-header { margin-bottom: 1.8rem; }
   .post-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    font-size: 0.78rem;
-    color: var(--gray3);
-    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.9rem;
+    flex-wrap: wrap; font-size: 0.76rem;
+    color: var(--grey-olive); margin-bottom: 0.8rem;
   }
   .post-cat-label {
-    background: var(--black);
-    color: var(--white);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.15rem 0.7rem;
-    letter-spacing: 0.04em;
+    background: var(--mauve); color: var(--white);
+    font-size: 0.7rem; font-weight: 700;
+    padding: 0.12rem 0.65rem; letter-spacing: 0.04em;
   }
   .post-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.65;
-    color: var(--black);
-    border-bottom: 1px solid var(--gray4);
+    font-size: 1.4rem; font-weight: 700;
+    line-height: 1.65; color: var(--mauve);
+    border-bottom: 1px solid var(--border);
     padding-bottom: 1.2rem;
   }
 
-  /* 記事本文 */
-  .post-body {
-    font-size: 0.95rem;
-    line-height: 1.9;
-    color: var(--black);
-    margin-bottom: 2rem;
-  }
+  .post-body { font-size: 0.95rem; line-height: 1.9; color: var(--mauve); margin-bottom: 2rem; }
   .post-body h2 {
     font-family: 'Noto Serif JP', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--black);
-    background: var(--gray5);
-    padding: 0.7rem 1.1rem;
-    border-left: 4px solid var(--black);
+    font-size: 1.08rem; font-weight: 700; color: var(--mauve);
+    background: var(--blush-light);
+    padding: 0.65rem 1rem;
+    border-left: 4px solid var(--mauve);
     margin: 2.5rem 0 1rem;
   }
   .post-body h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--black);
-    padding: 0.4rem 0 0.4rem 0.8rem;
-    border-left: 3px solid var(--accent);
+    font-size: 0.98rem; font-weight: 700; color: var(--mauve);
+    padding: 0.35rem 0 0.35rem 0.8rem;
+    border-left: 3px solid var(--sand);
     margin: 2rem 0 0.8rem;
   }
   .post-body p { margin-bottom: 1.1rem; }
-  .post-body ul, .post-body ol {
-    padding-left: 1.6rem;
-    margin-bottom: 1.1rem;
-  }
+  .post-body ul, .post-body ol { padding-left: 1.5rem; margin-bottom: 1rem; }
   .post-body li { margin-bottom: 0.4rem; }
-  .post-body hr {
-    border: none;
-    border-top: 1px solid var(--gray4);
-    margin: 2.5rem 0;
-  }
-  .post-body strong { font-weight: 700; }
+  .post-body hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+  .post-body strong { font-weight: 700; color: var(--mauve); }
 
-  /* タグ */
   .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.45rem;
     margin-bottom: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--gray4);
+    border-top: 1px solid var(--border);
   }
   .post-tag {
-    font-size: 0.75rem;
-    padding: 0.2rem 0.7rem;
-    border: 1px solid var(--gray4);
-    color: var(--gray2);
-    transition: all 0.15s;
+    font-size: 0.73rem; padding: 0.18rem 0.65rem;
+    border: 1px solid var(--blush);
+    color: var(--dim-grey); transition: all 0.15s;
   }
   .post-tag::before { content: "#"; }
-  .post-tag:hover {
-    background: var(--black);
-    color: var(--white);
-    border-color: var(--black);
-  }
+  .post-tag:hover { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
 
-  /* CTAボックス */
   .post-cta {
-    background: var(--gray5);
-    border: 1px solid var(--gray4);
+    background: var(--blush-light);
+    border: 1px solid var(--blush);
     border-radius: var(--radius);
-    padding: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
+    padding: 2rem; text-align: center; margin-bottom: 2rem;
   }
   .cta-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    color: var(--black);
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.6rem; color: var(--mauve);
   }
-  .cta-text {
-    font-size: 0.85rem;
-    color: var(--gray2);
-    margin-bottom: 1.3rem;
-    line-height: 1.7;
-  }
+  .cta-text { font-size: 0.83rem; color: var(--dim-grey); margin-bottom: 1.3rem; line-height: 1.7; }
   .cta-btn {
-    display: inline-block;
-    background: var(--black);
+    display: inline-block; background: var(--mauve);
     color: var(--white) !important;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 0.8rem 2.2rem;
+    font-weight: 700; font-size: 0.88rem;
+    padding: 0.75rem 2.2rem;
     letter-spacing: 0.04em;
     transition: background 0.2s, transform 0.15s;
   }
-  .cta-btn:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-  }
-  .cta-note {
-    font-size: 0.72rem;
-    color: var(--gray3);
-    margin-top: 0.8rem;
-  }
+  .cta-btn:hover { background: var(--dim-grey); transform: translateY(-2px); }
+  .cta-note { font-size: 0.7rem; color: var(--grey-olive); margin-top: 0.7rem; }
 
-  /* 戻るリンク */
   .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.82rem;
-    color: var(--gray2);
-    border: 1px solid var(--gray4);
-    padding: 0.45rem 1rem;
-    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.8rem; color: var(--dim-grey);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem; transition: all 0.15s;
   }
-  .back-link:hover {
-    background: var(--black);
-    color: var(--white);
-    border-color: var(--black);
-  }
+  .back-link:hover { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
 </style>
 
-<!-- パンくず -->
 <nav class="breadcrumb">
-  <a href="/">ホーム</a>
-  <span>›</span>
-  <a href="/">ヨガ体験談</a>
-  <span>›</span>
+  <a href="/">ホーム</a><span>›</span>
+  <a href="/">ヨガ体験談</a><span>›</span>
   <span>{{ title }}</span>
 </nav>
 
-<!-- アイキャッチ -->
 <img class="post-eyecatch"
-  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&h=720&q=80"
+  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&h=680&q=80"
   alt="{{ title }}">
 
-<!-- 記事ヘッダー -->
 <div class="post-header">
   <div class="post-meta">
     <span class="post-cat-label">ヨガ体験談</span>
@@ -201,12 +126,8 @@ layout: base.njk
   <h1 class="post-title">{{ title }}</h1>
 </div>
 
-<!-- 本文 -->
-<div class="post-body">
-  {{ content | safe }}
-</div>
+<div class="post-body">{{ content | safe }}</div>
 
-<!-- タグ -->
 <div class="post-tags">
   <a href="/" class="post-tag">SOELU</a>
   <a href="/" class="post-tag">オンラインヨガ</a>
@@ -215,7 +136,6 @@ layout: base.njk
   <a href="/" class="post-tag">ウェルネス</a>
 </div>
 
-<!-- CTA -->
 <div class="post-cta">
   <div class="cta-title">まず無料体験から始めてみませんか？</div>
   <p class="cta-text">体が硬くても、体調不安でも大丈夫。<br>私がそうだったから、自信を持って言えます🍀</p>

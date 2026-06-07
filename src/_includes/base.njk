@@ -11,35 +11,34 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #1a1a1a;
-      --gray1:   #444;
-      --gray2:   #777;
-      --gray3:   #aaa;
-      --gray4:   #e5e5e5;
-      --gray5:   #f5f5f5;
-      --white:   #fff;
-      --accent:  #b08d6b;
-      --accent2: #f7f0e8;
-      --radius:  8px;
-      --shadow:  0 2px 16px rgba(0,0,0,0.08);
-      --shadow-h:0 6px 24px rgba(0,0,0,0.14);
+      --mauve:      #4B3B47;
+      --dim-grey:   #6A6262;
+      --grey-olive: #9C9990;
+      --sand:       #CFD2B2;
+      --blush:      #E0D8DE;
+      --blush-light:#f5f1f3;
+      --white:      #fff;
+      --border:     #e8e2e5;
+      --radius:     6px;
+      --shadow:     0 2px 14px rgba(75,59,71,0.08);
+      --shadow-h:   0 6px 24px rgba(75,59,71,0.14);
     }
 
     body {
       font-family: 'Noto Sans JP', sans-serif;
-      color: var(--black);
+      color: var(--mauve);
       line-height: 1.85;
       background: var(--white);
       font-size: 15px;
       font-weight: 300;
     }
-    a { color: var(--black); text-decoration: none; }
-    a:hover { color: var(--accent); }
+    a { color: var(--mauve); text-decoration: none; }
+    a:hover { color: var(--dim-grey); }
     img { max-width: 100%; height: auto; display: block; }
 
     /* ===== ヘッダー ===== */
     .site-header {
-      border-bottom: 1px solid var(--gray4);
+      border-bottom: 1px solid var(--border);
       background: var(--white);
       position: sticky;
       top: 0;
@@ -52,53 +51,48 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      height: 60px;
     }
     .site-logo {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--black);
+      letter-spacing: 0.06em;
+      color: var(--mauve);
     }
-    .site-logo span {
-      color: var(--accent);
-    }
+    .site-logo span { color: var(--grey-olive); }
+
     .header-nav ul {
       list-style: none;
       display: flex;
-      gap: 0;
     }
     .header-nav li a {
       display: block;
-      padding: 0 1.1rem;
+      padding: 0 1rem;
       font-size: 0.82rem;
-      color: var(--gray1);
+      color: var(--dim-grey);
       letter-spacing: 0.04em;
-      line-height: 64px;
+      line-height: 60px;
       border-bottom: 2px solid transparent;
       transition: color 0.15s, border-color 0.15s;
     }
     .header-nav li a:hover {
-      color: var(--black);
-      border-bottom-color: var(--black);
+      color: var(--mauve);
+      border-bottom-color: var(--mauve);
     }
     .header-search {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: var(--gray2);
-      padding: 0.3rem;
+      background: none; border: none;
+      cursor: pointer; font-size: 1rem;
+      color: var(--grey-olive); padding: 0.3rem;
     }
 
-    /* ===== メインレイアウト ===== */
+    /* ===== メインレイアウト（コンテンツ＋サイドバー） ===== */
     .site-body {
       max-width: 1100px;
       margin: 2.5rem auto;
       padding: 0 1.5rem;
       display: grid;
-      grid-template-columns: 1fr 290px;
+      grid-template-columns: 1fr 280px;
       gap: 3rem;
       align-items: start;
     }
@@ -108,118 +102,98 @@
     /* ===== サイドバー ===== */
     .sidebar-widget { margin-bottom: 2.5rem; }
     .widget-title {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--black);
-      padding-bottom: 0.6rem;
-      border-bottom: 2px solid var(--black);
+      letter-spacing: 0.14em;
+      color: var(--mauve);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--mauve);
       margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     /* プロフィール */
     .profile-avatar {
-      width: 90px; height: 90px;
+      width: 80px; height: 80px;
       border-radius: 50%;
       overflow: hidden;
-      margin: 0 auto 0.9rem;
-      border: 2px solid var(--gray4);
+      margin: 0 auto 0.8rem;
+      border: 2px solid var(--blush);
     }
-    .profile-avatar img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .profile-name {
       text-align: center;
       font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      color: var(--mauve);
     }
     .profile-sub {
       text-align: center;
-      font-size: 0.78rem;
-      color: var(--gray2);
+      font-size: 0.75rem;
+      color: var(--grey-olive);
       margin-bottom: 0.8rem;
     }
-    .profile-text {
-      font-size: 0.82rem;
-      color: var(--gray1);
-      line-height: 1.8;
-    }
+    .profile-text { font-size: 0.82rem; color: var(--dim-grey); line-height: 1.8; }
 
     /* カテゴリ */
     .cat-list { list-style: none; }
-    .cat-list li {
-      border-bottom: 1px solid var(--gray4);
-    }
+    .cat-list li { border-bottom: 1px solid var(--border); }
     .cat-list li:last-child { border-bottom: none; }
     .cat-list li a {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.6rem 0;
-      font-size: 0.85rem;
-      color: var(--gray1);
+      padding: 0.55rem 0;
+      font-size: 0.83rem;
+      color: var(--dim-grey);
       transition: color 0.15s;
     }
-    .cat-list li a:hover { color: var(--black); }
-    .cat-count {
-      font-size: 0.72rem;
-      color: var(--gray3);
-    }
+    .cat-list li a:hover { color: var(--mauve); }
+    .cat-count { font-size: 0.72rem; color: var(--grey-olive); }
 
     /* タグ */
-    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; }
     .tag-link {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.7rem;
-      border: 1px solid var(--gray4);
-      color: var(--gray2);
+      font-size: 0.73rem;
+      padding: 0.18rem 0.65rem;
+      border: 1px solid var(--blush);
+      color: var(--dim-grey);
       transition: all 0.15s;
     }
-    .tag-link:hover {
-      background: var(--black);
-      color: var(--white);
-      border-color: var(--black);
-    }
+    .tag-link:hover { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
 
     /* 人気記事 */
     .popular-list { list-style: none; }
     .popular-item {
       display: grid;
-      grid-template-columns: 28px 70px 1fr;
-      gap: 0.7rem;
+      grid-template-columns: 24px 64px 1fr;
+      gap: 0.6rem;
       align-items: center;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid var(--gray4);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
     }
     .popular-item:last-child { border-bottom: none; }
     .popular-num {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--gray3);
+      color: var(--sand);
     }
     .popular-thumb {
-      width: 70px; height: 50px;
+      width: 64px; height: 46px;
       object-fit: cover;
-      border-radius: 4px;
-      background: var(--gray5);
+      border-radius: 3px;
     }
     .popular-title {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       line-height: 1.5;
-      color: var(--gray1);
+      color: var(--dim-grey);
     }
-    .popular-title:hover { color: var(--black); }
+    .popular-title:hover { color: var(--mauve); }
 
     /* ===== フッター ===== */
     .site-footer {
-      background: var(--black);
+      background: var(--mauve);
       color: rgba(255,255,255,0.6);
       text-align: center;
       padding: 3rem 1.5rem;
@@ -228,34 +202,27 @@
     }
     .footer-logo {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--white);
       margin-bottom: 0.5rem;
       letter-spacing: 0.08em;
     }
+    .footer-desc { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin-bottom: 1rem; }
     .footer-nav {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      margin: 1rem 0;
       flex-wrap: wrap;
+      margin-bottom: 1rem;
     }
-    .footer-nav a {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.78rem;
-    }
+    .footer-nav a { color: rgba(255,255,255,0.5); font-size: 0.78rem; }
     .footer-nav a:hover { color: var(--white); }
-    .footer-copy { margin-top: 1rem; font-size: 0.75rem; }
+    .footer-copy { font-size: 0.73rem; color: rgba(255,255,255,0.35); }
 
     /* ===== スマホ対応 ===== */
     @media (max-width: 768px) {
-      .site-body {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 0 1rem;
-        margin: 1.5rem auto;
-      }
+      .site-body { grid-template-columns: 1fr; gap: 2rem; padding: 0 1rem; margin: 1.5rem auto; }
       .sidebar { order: 2; }
       .main-content { order: 1; }
       .header-inner { padding: 0 1rem; }
@@ -289,30 +256,28 @@
     <aside class="sidebar">
 
       <div class="sidebar-widget">
-        <div class="widget-title">Profile</div>
+        <div class="widget-title">PROFILE</div>
         <div class="profile-avatar">
-          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=180&h=180&q=80" alt="ひかる">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=180&h=180&q=80" alt="ひかる">
         </div>
         <div class="profile-name">ひかる</div>
         <div class="profile-sub">おうちウェルネス管理人</div>
-        <p class="profile-text">
-          おうちヨガを通じて、毎日を少しずつ整えています。40〜50代の方へ、正直な体験談をお届けします。
-        </p>
+        <p class="profile-text">おうちヨガを通じて、毎日を少しずつ整えています。40〜50代の方へ、正直な体験談をお届けします。</p>
       </div>
 
       <div class="sidebar-widget">
-        <div class="widget-title">Popular</div>
+        <div class="widget-title">POPULAR</div>
         <ul class="popular-list">
           <li class="popular-item">
             <span class="popular-num">1</span>
-            <img class="popular-thumb" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=140&h=100&q=80" alt="">
+            <img class="popular-thumb" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=128&h=92&q=80" alt="">
             <a href="/posts/soelu-review/" class="popular-title">【体が硬い・体調不安な私でも】SOELUオンラインヨガを試した正直な体験談</a>
           </li>
         </ul>
       </div>
 
       <div class="sidebar-widget">
-        <div class="widget-title">Category</div>
+        <div class="widget-title">CATEGORY</div>
         <ul class="cat-list">
           <li><a href="/"><span>ヨガ体験談</span><span class="cat-count">1</span></a></li>
           <li><a href="/"><span>ウェルネス習慣</span><span class="cat-count">0</span></a></li>
@@ -322,7 +287,7 @@
       </div>
 
       <div class="sidebar-widget">
-        <div class="widget-title">Tags</div>
+        <div class="widget-title">TAGS</div>
         <div class="tag-cloud">
           <a href="/" class="tag-link">SOELU</a>
           <a href="/" class="tag-link">オンラインヨガ</a>
@@ -340,7 +305,7 @@
 
   <footer class="site-footer">
     <div class="footer-logo">おうちウェルネス</div>
-    <p>体が硬くても、体調不安でも。おうちからはじめるウェルネスライフ</p>
+    <p class="footer-desc">体が硬くても、体調不安でも。おうちからはじめるウェルネスライフ</p>
     <nav class="footer-nav">
       <a href="/">ホーム</a>
       <a href="/">プロフィール</a>
