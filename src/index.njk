@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: ホーム
+description: おうちヨガ・ウェルネスで毎日を整える。40〜50代女性のためのリアルな体験ブログ。
+---
+<section>
+  <p style="margin-bottom: 2rem; color: #555;">
+    体調に波があっても、体が硬くても、おうちでできることがある。<br>
+    同じ悩みを持つ40〜50代の方に届けたい、正直な体験談をお届けします。
+  </p>
+
+  <h2 style="font-size: 1.1rem; color: #2d7a5f; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8f4f0;">📝 新着記事</h2>
+
+  {% for post in collections.posts %}
+  <article style="margin-bottom: 2rem; padding: 1.2rem; background: #fff; border-radius: 8px; border: 1px solid #e8f4f0;">
+    <a href="{{ post.url }}" style="text-decoration: none; color: inherit;">
+      <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 0.5rem;">{{ post.date | dateJP }}</p>
+      <h3 style="font-size: 1rem; color: #222; line-height: 1.6;">{{ post.data.title }}</h3>
+      {% if post.data.description %}
+      <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">{{ post.data.description }}</p>
+      {% endif %}
+    </a>
+  </article>
+  {% endfor %}
+</section>

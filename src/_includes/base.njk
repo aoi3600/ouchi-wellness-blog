@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} | おうちウェルネス</title>
+  <meta name="description" content="{{ description or 'おうちヨガ・ウェルネスで毎日を整える。40〜50代女性のためのリアルな体験ブログ。' }}">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      color: #333;
+      line-height: 1.8;
+      background: #fafaf8;
+    }
+    header {
+      background: #fff;
+      border-bottom: 2px solid #e8f4f0;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+    }
+    header a { text-decoration: none; color: inherit; }
+    header h1 { font-size: 1.5rem; color: #2d7a5f; letter-spacing: 0.05em; }
+    header p { font-size: 0.85rem; color: #888; margin-top: 0.3rem; }
+    main {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+      border-top: 1px solid #eee;
+      margin-top: 4rem;
+    }
+    a { color: #2d7a5f; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/">
+      <h1>🌿 おうちウェルネス</h1>
+      <p>40〜50代女性のためのおうちヨガ・ウェルネスブログ</p>
+    </a>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer>
+    © 2026 おうちウェルネス｜村山美紀
+  </footer>
+</body>
+</html>
