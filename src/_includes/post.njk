@@ -6,108 +6,80 @@ layout: base.njk
   /* パンくず */
   .breadcrumb {
     font-size: 0.78rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
+    color: var(--gray3);
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
   }
-  .breadcrumb a { color: var(--text-muted); }
-  .breadcrumb a:hover { color: var(--green-dark); }
+  .breadcrumb a { color: var(--gray3); }
+  .breadcrumb a:hover { color: var(--black); }
 
   /* アイキャッチ */
   .post-eyecatch {
-    background: linear-gradient(135deg, var(--green-light), #c8e8da);
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
     border-radius: var(--radius);
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
     margin-bottom: 1.5rem;
+    display: block;
     box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-  }
-  .eyecatch-cat {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: var(--green-dark);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.25rem 0.8rem;
-    border-radius: 20px;
   }
 
   /* 記事ヘッダー */
-  .post-header {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    margin-bottom: 1.5rem;
-  }
+  .post-header { margin-bottom: 2rem; }
   .post-meta {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     flex-wrap: wrap;
     font-size: 0.78rem;
-    color: var(--text-muted);
+    color: var(--gray3);
     margin-bottom: 0.8rem;
   }
+  .post-cat-label {
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.7rem;
+    letter-spacing: 0.04em;
+  }
   .post-title {
-    font-size: 1.3rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.65;
-    color: var(--text);
-  }
-
-  /* 目次風ボックス */
-  .post-toc {
-    background: var(--green-light);
-    border-left: 4px solid var(--green);
-    border-radius: var(--radius-sm);
-    padding: 1rem 1.2rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.85rem;
-  }
-  .toc-title {
-    font-weight: 700;
-    color: var(--green-dark);
-    margin-bottom: 0.5rem;
-    font-size: 0.88rem;
+    color: var(--black);
+    border-bottom: 1px solid var(--gray4);
+    padding-bottom: 1.2rem;
   }
 
   /* 記事本文 */
   .post-body {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--black);
+    margin-bottom: 2rem;
   }
   .post-body h2 {
-    font-size: 1.12rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--white);
-    background: linear-gradient(90deg, var(--green-dark), var(--green));
-    padding: 0.65rem 1.1rem;
-    border-radius: var(--radius-sm);
-    margin: 2.2rem 0 1rem;
+    color: var(--black);
+    background: var(--gray5);
+    padding: 0.7rem 1.1rem;
+    border-left: 4px solid var(--black);
+    margin: 2.5rem 0 1rem;
   }
   .post-body h3 {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--green-dark);
-    padding: 0.4rem 0 0.4rem 0.9rem;
-    border-left: 4px solid var(--green);
-    background: var(--green-light);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    margin: 1.8rem 0 0.9rem;
+    color: var(--black);
+    padding: 0.4rem 0 0.4rem 0.8rem;
+    border-left: 3px solid var(--accent);
+    margin: 2rem 0 0.8rem;
   }
   .post-body p { margin-bottom: 1.1rem; }
   .post-body ul, .post-body ol {
@@ -117,128 +89,138 @@ layout: base.njk
   .post-body li { margin-bottom: 0.4rem; }
   .post-body hr {
     border: none;
-    border-top: 2px dashed var(--border);
-    margin: 2rem 0;
+    border-top: 1px solid var(--gray4);
+    margin: 2.5rem 0;
   }
-  .post-body strong { color: var(--green-dark); }
-
-  /* CTAボックス */
-  .post-cta {
-    background: linear-gradient(135deg, var(--green-light), #d8f0e6);
-    border: 2px solid var(--green);
-    border-radius: var(--radius);
-    padding: 1.8rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  .post-cta .cta-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--green-dark);
-    margin-bottom: 0.6rem;
-  }
-  .post-cta .cta-text {
-    font-size: 0.85rem;
-    color: var(--text-sub);
-    margin-bottom: 1.2rem;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: var(--green-dark);
-    color: #fff !important;
-    font-weight: 700;
-    font-size: 0.95rem;
-    padding: 0.8rem 2rem;
-    border-radius: 30px;
-    transition: background 0.2s, transform 0.15s;
-    box-shadow: 0 4px 14px rgba(42,122,90,0.3);
-  }
-  .cta-btn:hover {
-    background: var(--green);
-    transform: translateY(-2px);
-    text-decoration: none;
-  }
+  .post-body strong { font-weight: 700; }
 
   /* タグ */
   .post-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray4);
   }
   .post-tag {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     padding: 0.2rem 0.7rem;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    color: var(--text-sub);
+    border: 1px solid var(--gray4);
+    color: var(--gray2);
+    transition: all 0.15s;
   }
   .post-tag::before { content: "#"; }
+  .post-tag:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+  }
 
-  /* 戻るボタン */
-  .back-btn {
+  /* CTAボックス */
+  .post-cta {
+    background: var(--gray5);
+    border: 1px solid var(--gray4);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .cta-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--black);
+  }
+  .cta-text {
+    font-size: 0.85rem;
+    color: var(--gray2);
+    margin-bottom: 1.3rem;
+    line-height: 1.7;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white) !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 2.2rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  .cta-note {
+    font-size: 0.72rem;
+    color: var(--gray3);
+    margin-top: 0.8rem;
+  }
+
+  /* 戻るリンク */
+  .back-link {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--green-dark);
-    padding: 0.55rem 1.2rem;
-    border: 2px solid var(--green);
-    border-radius: 25px;
-    transition: all 0.18s;
+    font-size: 0.82rem;
+    color: var(--gray2);
+    border: 1px solid var(--gray4);
+    padding: 0.45rem 1rem;
+    transition: all 0.15s;
   }
-  .back-btn:hover {
-    background: var(--green-dark);
-    color: #fff;
-    text-decoration: none;
+  .back-link:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
   }
 </style>
 
 <!-- パンくず -->
-<div class="breadcrumb">
-  <a href="/">🏠 ホーム</a>
+<nav class="breadcrumb">
+  <a href="/">ホーム</a>
   <span>›</span>
-  <span>ヨガ体験談</span>
+  <a href="/">ヨガ体験談</a>
   <span>›</span>
   <span>{{ title }}</span>
-</div>
+</nav>
 
 <!-- アイキャッチ -->
-<div class="post-eyecatch">
-  🧘
-  <span class="eyecatch-cat">🧘 ヨガ体験談</span>
-</div>
+<img class="post-eyecatch"
+  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&h=720&q=80"
+  alt="{{ title }}">
 
 <!-- 記事ヘッダー -->
 <div class="post-header">
   <div class="post-meta">
-    <span>📅 {{ date | dateJP }}</span>
-    <span>✍️ 村山美紀</span>
+    <span class="post-cat-label">ヨガ体験談</span>
+    <span>{{ date | dateJP }}</span>
+    <span>ひかる</span>
   </div>
   <h1 class="post-title">{{ title }}</h1>
 </div>
 
-<!-- 記事本文 -->
+<!-- 本文 -->
 <div class="post-body">
   {{ content | safe }}
 </div>
 
 <!-- タグ -->
 <div class="post-tags">
-  <span class="post-tag">SOELU</span>
-  <span class="post-tag">オンラインヨガ</span>
-  <span class="post-tag">初心者</span>
-  <span class="post-tag">50代</span>
-  <span class="post-tag">体が硬い</span>
+  <a href="/" class="post-tag">SOELU</a>
+  <a href="/" class="post-tag">オンラインヨガ</a>
+  <a href="/" class="post-tag">初心者</a>
+  <a href="/" class="post-tag">体が硬い</a>
+  <a href="/" class="post-tag">ウェルネス</a>
 </div>
 
 <!-- CTA -->
 <div class="post-cta">
-  <div class="cta-title">💚 まず無料体験から始めてみませんか？</div>
-  <p class="cta-text">体が硬くても、体調不安でも大丈夫。私がそうだったから言えます🍀</p>
-  <a href="#" class="cta-btn">👉 SOELUを無料で試してみる</a>
-  <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.8rem;">※ アフィリエイトリンクをここに挿入してください</p>
+  <div class="cta-title">まず無料体験から始めてみませんか？</div>
+  <p class="cta-text">体が硬くても、体調不安でも大丈夫。<br>私がそうだったから、自信を持って言えます🍀</p>
+  <a href="#" class="cta-btn">SOELUを無料で試してみる</a>
+  <p class="cta-note">※ こちらにアフィリエイトリンクを挿入してください</p>
 </div>
 
-<a href="/" class="back-btn">← 記事一覧に戻る</a>
+<a href="/" class="back-link">← 記事一覧に戻る</a>
