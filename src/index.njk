@@ -5,122 +5,178 @@ description: おうちヨガ・ウェルネスで毎日を整える。40〜50代
 ---
 
 <style>
-  .page-heading {
+  /* ===== ヒーローバナー ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '🌿';
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem;
+    opacity: 0.2;
+  }
+  .hero-label {
+    font-size: 0.78rem;
+    background: rgba(255,255,255,0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+  .hero p {
+    font-size: 0.88rem;
+    opacity: 0.88;
+    line-height: 1.7;
+  }
+
+  /* ===== セクションタイトル ===== */
+  .section-title {
     font-size: 1rem;
-    font-weight: bold;
-    color: var(--green);
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--green-light);
-    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    padding: 0.5rem 0 0.5rem 0.8rem;
+    border-left: 4px solid var(--green);
+    margin-bottom: 1.2rem;
     display: flex;
     align-items: center;
     gap: 0.4rem;
   }
 
-  /* カード型記事一覧 */
-  .post-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  /* ===== カードグリッド ===== */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
 
   .post-card {
     background: var(--white);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.22s, box-shadow 0.22s;
   }
   .post-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
 
   .post-card-thumb {
-    background: var(--green-light);
+    background: linear-gradient(135deg, var(--green-light), #d0ede3);
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
-    min-height: 140px;
+    font-size: 3.5rem;
+    position: relative;
+  }
+  .post-card-cat {
+    position: absolute;
+    top: 0.7rem;
+    left: 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    background: var(--green-dark);
+    color: #fff;
   }
 
   .post-card-body {
-    padding: 1.2rem;
+    padding: 1.1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    flex: 1;
+    gap: 0.5rem;
   }
 
-  .post-card-meta {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .post-card-cat {
-    background: var(--green-light);
-    color: var(--green);
-    padding: 0.1rem 0.6rem;
-    border-radius: 20px;
+  .post-card-date {
     font-size: 0.75rem;
-    font-weight: bold;
+    color: var(--text-muted);
   }
 
   .post-card-title {
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 0.92rem;
+    font-weight: 700;
     line-height: 1.6;
     color: var(--text);
-    margin-bottom: 0.6rem;
+    flex: 1;
   }
-  .post-card-title:hover { color: var(--green); }
+  .post-card-title a { color: var(--text); }
+  .post-card-title a:hover { color: var(--green-dark); }
 
   .post-card-excerpt {
-    font-size: 0.85rem;
-    color: var(--text-light);
+    font-size: 0.8rem;
+    color: var(--text-sub);
     line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-bottom: 0.8rem;
   }
 
-  .post-card-link {
-    font-size: 0.82rem;
-    color: var(--green);
-    font-weight: bold;
+  .post-card-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-top: 0.3rem;
   }
-  .post-card-link::after { content: " →"; }
+  .post-card-more::after { content: " →"; }
 
   @media (max-width: 600px) {
-    .post-card { grid-template-columns: 1fr; }
-    .post-card-thumb { min-height: 120px; }
+    .post-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.1rem; }
+    .hero::after { display: none; }
   }
 </style>
 
-<h2 class="page-heading">📝 新着記事</h2>
+<!-- ヒーローバナー -->
+<div class="hero">
+  <div class="hero-label">🌿 おうちウェルネスへようこそ</div>
+  <h1>体が硬くても、体調不安でも<br>おうちから始めるヨガ習慣</h1>
+  <p>40〜50代女性のリアルな体験談。「できない」を「できた」に変えた記録を届けます。</p>
+</div>
 
-<div class="post-cards">
+<!-- 記事一覧 -->
+<div class="section-title">📝 新着記事</div>
+
+<div class="post-grid">
   {% for post in collections.posts %}
   <article class="post-card">
-    <div class="post-card-thumb">🧘</div>
+    <div class="post-card-thumb">
+      🧘
+      <span class="post-card-cat">ヨガ体験談</span>
+    </div>
     <div class="post-card-body">
-      <div>
-        <div class="post-card-meta">
-          <span>{{ post.date | dateJP }}</span>
-          <span class="post-card-cat">ヨガ体験談</span>
-        </div>
-        <h3 class="post-card-title">
-          <a href="{{ post.url }}">{{ post.data.title }}</a>
-        </h3>
-        {% if post.data.description %}
-        <p class="post-card-excerpt">{{ post.data.description }}</p>
-        {% endif %}
-      </div>
-      <a href="{{ post.url }}" class="post-card-link">続きを読む</a>
+      <div class="post-card-date">{{ post.date | dateJP }}</div>
+      <h2 class="post-card-title">
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+      </h2>
+      {% if post.data.description %}
+      <p class="post-card-excerpt">{{ post.data.description }}</p>
+      {% endif %}
+      <a href="{{ post.url }}" class="post-card-more">続きを読む</a>
     </div>
   </article>
   {% endfor %}

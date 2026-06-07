@@ -3,43 +3,83 @@ layout: base.njk
 ---
 
 <style>
-  .post-header {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 1.5rem;
+  /* パンくず */
+  .breadcrumb {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
   }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--green-dark); }
+
+  /* アイキャッチ */
   .post-eyecatch {
-    background: var(--green-light);
-    height: 200px;
+    background: linear-gradient(135deg, var(--green-light), #c8e8da);
+    border-radius: var(--radius);
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
   }
-  .post-header-body { padding: 1.5rem; }
+  .eyecatch-cat {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--green-dark);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  /* 記事ヘッダー */
+  .post-header {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+  }
   .post-meta {
-    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
     color: var(--text-muted);
     margin-bottom: 0.8rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .post-cat-badge {
-    background: var(--green-light);
-    color: var(--green);
-    padding: 0.15rem 0.7rem;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: bold;
   }
   .post-title {
     font-size: 1.3rem;
-    line-height: 1.6;
+    font-weight: 700;
+    line-height: 1.65;
     color: var(--text);
+  }
+
+  /* 目次風ボックス */
+  .post-toc {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+  }
+  .toc-title {
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.88rem;
   }
 
   /* 記事本文 */
@@ -51,77 +91,154 @@ layout: base.njk
     margin-bottom: 1.5rem;
   }
   .post-body h2 {
-    font-size: 1.15rem;
+    font-size: 1.12rem;
+    font-weight: 700;
     color: var(--white);
-    background: var(--green);
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    margin: 2rem 0 1rem;
+    background: linear-gradient(90deg, var(--green-dark), var(--green));
+    padding: 0.65rem 1.1rem;
+    border-radius: var(--radius-sm);
+    margin: 2.2rem 0 1rem;
   }
   .post-body h3 {
     font-size: 1rem;
-    color: var(--green);
-    padding: 0.4rem 0 0.4rem 0.8rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    padding: 0.4rem 0 0.4rem 0.9rem;
     border-left: 4px solid var(--green);
-    margin: 1.5rem 0 0.8rem;
+    background: var(--green-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 1.8rem 0 0.9rem;
   }
-  .post-body p { margin-bottom: 1rem; }
-  .post-body ul {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
+  .post-body p { margin-bottom: 1.1rem; }
+  .post-body ul, .post-body ol {
+    padding-left: 1.6rem;
+    margin-bottom: 1.1rem;
   }
   .post-body li { margin-bottom: 0.4rem; }
   .post-body hr {
     border: none;
-    border-top: 2px dashed var(--green-light);
+    border-top: 2px dashed var(--border);
     margin: 2rem 0;
   }
+  .post-body strong { color: var(--green-dark); }
 
-  /* CTA */
+  /* CTAボックス */
   .post-cta {
-    background: var(--green-light);
+    background: linear-gradient(135deg, var(--green-light), #d8f0e6);
     border: 2px solid var(--green);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.8rem;
     text-align: center;
     margin-bottom: 1.5rem;
   }
-  .post-cta p { margin-bottom: 0.8rem; font-size: 0.9rem; }
+  .post-cta .cta-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 0.6rem;
+  }
+  .post-cta .cta-text {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-bottom: 1.2rem;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--green-dark);
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(42,122,90,0.3);
+  }
+  .cta-btn:hover {
+    background: var(--green);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
 
-  /* 戻るリンク */
-  .post-back {
+  /* タグ */
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .post-tag {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--text-sub);
+  }
+  .post-tag::before { content: "#"; }
+
+  /* 戻るボタン */
+  .back-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
     font-size: 0.85rem;
-    color: var(--green);
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--green);
-    border-radius: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+    padding: 0.55rem 1.2rem;
+    border: 2px solid var(--green);
+    border-radius: 25px;
+    transition: all 0.18s;
   }
-  .post-back:hover { background: var(--green-light); text-decoration: none; }
+  .back-btn:hover {
+    background: var(--green-dark);
+    color: #fff;
+    text-decoration: none;
+  }
 </style>
 
-<article>
-  <div class="post-header">
-    <div class="post-eyecatch">🧘</div>
-    <div class="post-header-body">
-      <div class="post-meta">
-        <span>{{ date | dateJP }}</span>
-        <span class="post-cat-badge">ヨガ体験談</span>
-      </div>
-      <h1 class="post-title">{{ title }}</h1>
-    </div>
-  </div>
+<!-- パンくず -->
+<div class="breadcrumb">
+  <a href="/">🏠 ホーム</a>
+  <span>›</span>
+  <span>ヨガ体験談</span>
+  <span>›</span>
+  <span>{{ title }}</span>
+</div>
 
-  <div class="post-body">
-    {{ content | safe }}
-  </div>
+<!-- アイキャッチ -->
+<div class="post-eyecatch">
+  🧘
+  <span class="eyecatch-cat">🧘 ヨガ体験談</span>
+</div>
 
-  <div class="post-cta">
-    <p>💚 この記事が参考になったら、まず無料体験から始めてみてください🍀</p>
-    <p style="font-size:0.82rem; color:var(--text-muted);">※ アフィリエイトリンクはこちらに入ります</p>
+<!-- 記事ヘッダー -->
+<div class="post-header">
+  <div class="post-meta">
+    <span>📅 {{ date | dateJP }}</span>
+    <span>✍️ 村山美紀</span>
   </div>
+  <h1 class="post-title">{{ title }}</h1>
+</div>
 
-  <a href="/" class="post-back">← 記事一覧に戻る</a>
-</article>
+<!-- 記事本文 -->
+<div class="post-body">
+  {{ content | safe }}
+</div>
+
+<!-- タグ -->
+<div class="post-tags">
+  <span class="post-tag">SOELU</span>
+  <span class="post-tag">オンラインヨガ</span>
+  <span class="post-tag">初心者</span>
+  <span class="post-tag">50代</span>
+  <span class="post-tag">体が硬い</span>
+</div>
+
+<!-- CTA -->
+<div class="post-cta">
+  <div class="cta-title">💚 まず無料体験から始めてみませんか？</div>
+  <p class="cta-text">体が硬くても、体調不安でも大丈夫。私がそうだったから言えます🍀</p>
+  <a href="#" class="cta-btn">👉 SOELUを無料で試してみる</a>
+  <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.8rem;">※ アフィリエイトリンクをここに挿入してください</p>
+</div>
+
+<a href="/" class="back-btn">← 記事一覧に戻る</a>
