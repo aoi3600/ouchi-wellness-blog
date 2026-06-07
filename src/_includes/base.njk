@@ -6,50 +6,264 @@
   <title>{{ title }} | おうちウェルネス</title>
   <meta name="description" content="{{ description or 'おうちヨガ・ウェルネスで毎日を整える。40〜50代女性のためのリアルな体験ブログ。' }}">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2d7a5f;
+      --green-light: #e8f4f0;
+      --green-pale: #f4faf7;
+      --text: #333;
+      --text-light: #666;
+      --text-muted: #999;
+      --border: #e0ece8;
+      --white: #fff;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
     body {
-      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-      color: #333;
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
+      color: var(--text);
       line-height: 1.8;
-      background: #fafaf8;
+      background: var(--green-pale);
+      font-size: 15px;
     }
-    header {
-      background: #fff;
-      border-bottom: 2px solid #e8f4f0;
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      background: var(--white);
+      border-bottom: 3px solid var(--green);
+      padding: 0;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       padding: 1.2rem 1.5rem;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
     }
-    header a { text-decoration: none; color: inherit; }
-    header h1 { font-size: 1.5rem; color: #2d7a5f; letter-spacing: 0.05em; }
-    header p { font-size: 0.85rem; color: #888; margin-top: 0.3rem; }
-    main {
-      max-width: 720px;
+    .site-title a {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--green);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .site-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ===== カテゴリナビ ===== */
+    .category-nav {
+      background: var(--green);
+      padding: 0;
+    }
+    .category-nav ul {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .category-nav li a {
+      display: block;
+      padding: 0.6rem 1.2rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .category-nav li a:hover {
+      background: rgba(255,255,255,0.15);
+      text-decoration: none;
+    }
+
+    /* ===== メインレイアウト ===== */
+    .site-body {
+      max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
     }
-    footer {
+
+    /* ===== メインコンテンツ ===== */
+    .main-content { min-width: 0; }
+
+    /* ===== サイドバー ===== */
+    .sidebar { min-width: 0; }
+
+    .sidebar-widget {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .widget-title {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--green);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--green-light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* プロフィール */
+    .profile-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--green-light);
+      margin: 0 auto 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .profile-name {
       text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      color: #aaa;
-      border-top: 1px solid #eee;
-      margin-top: 4rem;
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
     }
-    a { color: #2d7a5f; }
+    .profile-text {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* 最新記事リスト */
+    .recent-list { list-style: none; }
+    .recent-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .recent-list li:last-child { border-bottom: none; }
+    .recent-list li a { color: var(--text); }
+    .recent-list li a:hover { color: var(--green); }
+
+    /* カテゴリリスト */
+    .cat-list { list-style: none; }
+    .cat-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .cat-list li:last-child { border-bottom: none; }
+    .cat-list li a {
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+    }
+    .cat-list li a:hover { color: var(--green); text-decoration: none; }
+
+    /* ===== フッター ===== */
+    .site-footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+      background: var(--white);
+    }
+
+    /* ===== スマホ対応 ===== */
+    @media (max-width: 768px) {
+      .site-body {
+        grid-template-columns: 1fr;
+        margin: 1rem auto;
+        padding: 0 1rem;
+      }
+      .sidebar { order: 2; }
+      .main-content { order: 1; }
+      .header-inner { padding: 1rem; }
+      .category-nav ul { padding: 0 1rem; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <a href="/">
-      <h1>🌿 おうちウェルネス</h1>
-      <p>40〜50代女性のためのおうちヨガ・ウェルネスブログ</p>
-    </a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-title">
+        <a href="/">🌿 おうちウェルネス</a>
+        <p class="site-tagline">40〜50代女性のためのおうちヨガ・ウェルネスブログ</p>
+      </div>
+    </div>
   </header>
-  <main>
-    {{ content | safe }}
-  </main>
-  <footer>
-    © 2026 おうちウェルネス｜村山美紀
+
+  <nav class="category-nav">
+    <ul>
+      <li><a href="/">🏠 ホーム</a></li>
+      <li><a href="/">🧘 ヨガ体験談</a></li>
+      <li><a href="/">💪 ウェルネス習慣</a></li>
+      <li><a href="/">📖 初心者ガイド</a></li>
+    </ul>
+  </nav>
+
+  <div class="site-body">
+    <main class="main-content">
+      {{ content | safe }}
+    </main>
+
+    <aside class="sidebar">
+
+      <!-- プロフィール -->
+      <div class="sidebar-widget">
+        <div class="widget-title">👩 プロフィール</div>
+        <div class="profile-icon">🌿</div>
+        <div class="profile-name">村山 美紀（54歳）</div>
+        <p class="profile-text">
+          頚椎症持ち・体が硬い・体調に波がある50代。それでもおうちヨガで「できた」を積み重ねています。同じ悩みを持つ40〜50代の方に届けたい、正直な体験談を書いています。
+        </p>
+      </div>
+
+      <!-- カテゴリ -->
+      <div class="sidebar-widget">
+        <div class="widget-title">📂 カテゴリ</div>
+        <ul class="cat-list">
+          <li><a href="/"><span>🧘 ヨガ体験談</span><span>1</span></a></li>
+          <li><a href="/"><span>💪 ウェルネス習慣</span><span>0</span></a></li>
+          <li><a href="/"><span>📖 初心者ガイド</span><span>0</span></a></li>
+        </ul>
+      </div>
+
+      <!-- 最新記事 -->
+      <div class="sidebar-widget">
+        <div class="widget-title">📝 最新記事</div>
+        <ul class="recent-list">
+          <li><a href="/posts/soelu-review/">【体が硬い・体調不安な私でも】SOELUオンラインヨガを試した正直な体験談</a></li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    © 2026 おうちウェルネス｜村山美紀｜
+    <a href="/">プライバシーポリシー</a>
   </footer>
+
 </body>
 </html>
